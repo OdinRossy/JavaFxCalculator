@@ -51,9 +51,6 @@ public class Controller {
     @FXML
     protected void initialize() {
 
-        arithmeticWorker.setFirstNumber(0);
-        arithmeticWorker.setSecondNumber(0);
-
         clearLabelResult();
 
         buttonAddition.setOnAction(event -> handleArithmeticAction('+'));
@@ -115,7 +112,7 @@ public class Controller {
     }
 
     private void clearLabelResult() {
-        labelResult.setText("");
+        labelResult.setText("0");
         arithmeticWorker.setFirstNumber(0);
         arithmeticWorker.setSecondNumber(0);
         isActorA = true;
