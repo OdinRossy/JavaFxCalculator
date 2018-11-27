@@ -48,6 +48,10 @@ public class Controller {
     private boolean isActorA = true;
     private ArithmeticWorker arithmeticWorker = new ArithmeticWorker();
 
+    private final Font FONT_SMALL = new Font(20);
+    private final Font FONT_MEDIUM = new Font(40);
+    private final Font FONT_REGULAR = new Font(60);
+
     @FXML
     protected void initialize() {
 
@@ -99,7 +103,7 @@ public class Controller {
             isActorA = false;
         } else {
             double result = arithmeticWorker.getResult();
-            showTextOfLabelResult(String.valueOf(result));
+            showTextOfLabelResult(String.valueOf(result).equals("0.0")? "0" : String.valueOf(result));
             arithmeticWorker.setFirstNumber(result);
             isActorA = true;
         }
@@ -108,15 +112,16 @@ public class Controller {
     private void showTextOfLabelResult(String string) {
         labelResult.setText(string);
         if (string.length() > 8 && string.length() < 16){
-            labelResult.setFont(new Font(40));
+            labelResult.setFont(FONT_MEDIUM);
         } else if (string.length() >= 16)
-            labelResult.setFont(new Font(20));
+            labelResult.setFont(FONT_SMALL);
         else
-            labelResult.setFont(new Font(60));
+            labelResult.setFont(FONT_REGULAR);
     }
 
     private void clearLabelResult() {
         labelResult.setText("0");
+        labelResult.setFont(FONT_REGULAR);
         arithmeticWorker.setFirstNumber(0);
         arithmeticWorker.setSecondNumber(0);
         isActorA = true;
