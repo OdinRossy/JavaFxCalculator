@@ -3,6 +3,7 @@ package main.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import main.ArithmeticWorker;
 
 public class Controller {
@@ -74,12 +75,12 @@ public class Controller {
         btn7.setOnAction(event -> handleButtonPressing('7'));
         btn8.setOnAction(event -> handleButtonPressing('8'));
         btn9.setOnAction(event -> handleButtonPressing('9'));
-        buttonDot.setOnAction(event -> handleButtonPressing(','));
+        buttonDot.setOnAction(event -> handleButtonPressing('.'));
 
     }
 
     private void handleButtonPressing(char number) {
-        labelResult.setText(labelResult.getText() + number);
+        showInLabelResult(labelResult.getText() + number);
         if (isActorA) {
             arithmeticWorker.setFirstNumber(Double.parseDouble(labelResult.getText().trim()));
         } else {
@@ -90,7 +91,7 @@ public class Controller {
     }
 
     private void handleArithmeticAction(char action) {
-        clearLabelResult();
+        labelResult.setText("");
         if (isActorA){
             arithmeticWorker.setAction(action);
             isActorA = false;
@@ -104,10 +105,16 @@ public class Controller {
 
     private void showInLabelResult(String string) {
         labelResult.setText(string);
-
+        if (string.length() > 8){
+            labelResult.setFont(new Font(40));
+        } else
+            labelResult.setFont(new Font(60));
     }
 
     private void clearLabelResult() {
         labelResult.setText("");
+        arithmeticWorker.setFirstNumber(0);
+        arithmeticWorker.setSecondNumber(0);
+        isActorA = true;
     }
 }
