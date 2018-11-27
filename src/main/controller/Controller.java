@@ -47,7 +47,6 @@ public class Controller {
 
     private boolean isActorA = true;
     private ArithmeticWorker arithmeticWorker = new ArithmeticWorker();
-    private double result;
 
     @FXML
     protected void initialize() {
@@ -80,14 +79,16 @@ public class Controller {
     }
 
     private void handleButtonPressing(char number) {
-        showInLabelResult(labelResult.getText() + number);
-        if (isActorA) {
-            arithmeticWorker.setFirstNumber(Double.parseDouble(labelResult.getText().trim()));
-        } else {
-            arithmeticWorker.setSecondNumber(Double.parseDouble(labelResult.getText().trim()));
+        try {
+            showTextOfLabelResult(labelResult.getText() + number);
+            if (isActorA) {
+                arithmeticWorker.setFirstNumber(Double.parseDouble(labelResult.getText().trim()));
+            } else {
+                arithmeticWorker.setSecondNumber(Double.parseDouble(labelResult.getText().trim()));
+            }
+        } catch (NumberFormatException e) {
+            clearLabelResult();
         }
-        System.out.println("first number:" + arithmeticWorker.getFirstNumber());
-        System.out.println("second number:" + arithmeticWorker.getSecondNumber());
     }
 
     private void handleArithmeticAction(char action) {
@@ -96,18 +97,20 @@ public class Controller {
             arithmeticWorker.setAction(action);
             isActorA = false;
         } else {
-            result = arithmeticWorker.getResult();
-            showInLabelResult(String.valueOf(result));
+            double result = arithmeticWorker.getResult();
+            showTextOfLabelResult(String.valueOf(result));
             arithmeticWorker.setFirstNumber(result);
             isActorA = true;
         }
     }
 
-    private void showInLabelResult(String string) {
+    private void showTextOfLabelResult(String string) {
         labelResult.setText(string);
-        if (string.length() > 8){
+        if (string.length() > 8 && string.length() < 16){
             labelResult.setFont(new Font(40));
-        } else
+        } else if (string.length() >= 16)
+            labelResult.setFont(new Font(20));
+        else
             labelResult.setFont(new Font(60));
     }
 
