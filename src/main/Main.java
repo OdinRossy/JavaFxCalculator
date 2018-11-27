@@ -13,6 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
         primaryStage.setTitle("Calculator");
         primaryStage.setScene(new Scene(root, 350, 550));
+        primaryStage.setMaxWidth(350);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
