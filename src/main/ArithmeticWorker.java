@@ -12,6 +12,7 @@ public class ArithmeticWorker {
             case '-' : return this.firstNumber - this.secondNumber;
             case '*' : return this.firstNumber * this.secondNumber;
             case '/' : return this.firstNumber / this.secondNumber;
+            case '=' : return firstNumber;
             default: return 0;
         }
     }
