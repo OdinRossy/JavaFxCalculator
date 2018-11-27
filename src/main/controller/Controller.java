@@ -81,7 +81,7 @@ public class Controller {
 
     private void handleButtonPressing(char number) {
         try {
-            if ((labelResult.getText().equals("0") || labelResult.getText().equals("0.0")) && number != '.') {
+            if (labelResult.getText().equals("0") && number != '.') {
                 showTextOfLabelResult(String.valueOf(number));
             } else {
                 showTextOfLabelResult(labelResult.getText() + number);
