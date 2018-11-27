@@ -77,7 +77,11 @@ public class Controller {
 
     private void handleButtonPressing(char number) {
         try {
-            showTextOfLabelResult(labelResult.getText() + number);
+            if (labelResult.getText().equals("0") || labelResult.getText().equals("0.0")) {
+                showTextOfLabelResult(String.valueOf(number));
+            } else {
+                showTextOfLabelResult(labelResult.getText() + number);
+            }
             if (isActorA) {
                 arithmeticWorker.setFirstNumber(Double.parseDouble(labelResult.getText().trim()));
             } else {
