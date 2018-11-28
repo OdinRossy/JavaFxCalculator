@@ -48,7 +48,7 @@ public class Controller {
     private boolean isActorA = true;
     private ArithmeticWorker arithmeticWorker = new ArithmeticWorker();
 
-    private final Font FONT_SMALL = new Font(20);
+    private final Font FONT_SMALL = new Font(26);
     private final Font FONT_MEDIUM = new Font(40);
     private final Font FONT_REGULAR = new Font(60);
 
@@ -97,6 +97,7 @@ public class Controller {
     }
 
     private void handleArithmeticAction(char action) {
+        setDefaultColors();
         labelResult.setText("");
         if (isActorA){
             arithmeticWorker.setAction(action);
@@ -106,6 +107,25 @@ public class Controller {
             showTextOfLabelResult(String.valueOf(result).equals("0.0")? "0" : String.valueOf(result));
             arithmeticWorker.setFirstNumber(result);
             isActorA = true;
+        }
+        switch (action) {
+            case '+' : {
+                buttonAddition.setStyle("-fx-background-color: #CC9966; -fx-background-radius: 100;");
+                break;
+            }
+            case '-' : {
+                buttonSubtraction.setStyle("-fx-background-color: #CC9966; -fx-background-radius: 100;");
+                break;
+            }
+            case '*' : {
+                buttonMultiplication.setStyle("-fx-background-color: #CC9966; -fx-background-radius: 100;");
+                break;
+            }
+            case '/' : {
+                buttonDivision.setStyle("-fx-background-color: #CC9966; -fx-background-radius: 100;");
+                break;
+            }
+
         }
     }
 
@@ -125,5 +145,12 @@ public class Controller {
         arithmeticWorker.setFirstNumber(0);
         arithmeticWorker.setSecondNumber(0);
         isActorA = true;
+    }
+
+    private void setDefaultColors() {
+        buttonAddition.setStyle("-fx-background-color: #FF9933; -fx-background-radius: 100;");
+        buttonSubtraction.setStyle("-fx-background-color: #FF9933; -fx-background-radius: 100;");
+        buttonMultiplication.setStyle("-fx-background-color: #FF9933; -fx-background-radius: 100;");
+        buttonDivision.setStyle("-fx-background-color: #FF9933; -fx-background-radius: 100;");
     }
 }
