@@ -1,4 +1,4 @@
-package main;
+package com.glebremniov.javafxCalculator;
 
 public class ArithmeticWorker {
 
@@ -7,14 +7,14 @@ public class ArithmeticWorker {
     private char action;
 
     public double getResult() {
-        switch (action) {
-            case '+' : return this.firstNumber + this.secondNumber;
-            case '-' : return this.firstNumber - this.secondNumber;
-            case '*' : return this.firstNumber * this.secondNumber;
-            case '/' : return this.firstNumber / this.secondNumber;
-            case '=' : return firstNumber;
-            default: return 0;
-        }
+        return switch (action) {
+            case '+' -> this.firstNumber + this.secondNumber;
+            case '-' -> this.firstNumber - this.secondNumber;
+            case '*' -> this.firstNumber * this.secondNumber;
+            case '/' -> this.firstNumber / this.secondNumber;
+            case '=' -> firstNumber;
+            default -> 0;
+        };
     }
 
     public void setFirstNumber(double firstNumber) {

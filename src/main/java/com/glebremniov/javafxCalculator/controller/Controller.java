@@ -1,10 +1,10 @@
-package main.controller;
+package com.glebremniov.javafxCalculator.controller;
 
+import com.glebremniov.javafxCalculator.ArithmeticWorker;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
-import main.ArithmeticWorker;
 
 public class Controller {
 
@@ -46,7 +46,7 @@ public class Controller {
     public Label labelResult;
 
     private boolean isActorA = true;
-    private ArithmeticWorker arithmeticWorker = new ArithmeticWorker();
+    private final ArithmeticWorker arithmeticWorker = new ArithmeticWorker();
 
     private final Font FONT_SMALL = new Font(26);
     private final Font FONT_MEDIUM = new Font(40);
@@ -99,39 +99,34 @@ public class Controller {
     private void handleArithmeticAction(char action) {
         setDefaultColors();
         labelResult.setText("");
-        if (isActorA){
+        if (isActorA) {
             arithmeticWorker.setAction(action);
             isActorA = false;
         } else {
             double result = arithmeticWorker.getResult();
-            showTextOfLabelResult(String.valueOf(result).equals("0.0")? "0" : String.valueOf(result));
+            showTextOfLabelResult(String.valueOf(result).equals("0.0") ? "0" : String.valueOf(result));
             arithmeticWorker.setFirstNumber(result);
             isActorA = true;
         }
         switch (action) {
-            case '+' : {
+            case '+' -> {
                 buttonAddition.setStyle("-fx-background-color: #CC9966; -fx-background-radius: 100;");
-                break;
             }
-            case '-' : {
+            case '-' -> {
                 buttonSubtraction.setStyle("-fx-background-color: #CC9966; -fx-background-radius: 100;");
-                break;
             }
-            case '*' : {
+            case '*' -> {
                 buttonMultiplication.setStyle("-fx-background-color: #CC9966; -fx-background-radius: 100;");
-                break;
             }
-            case '/' : {
+            case '/' -> {
                 buttonDivision.setStyle("-fx-background-color: #CC9966; -fx-background-radius: 100;");
-                break;
             }
-
         }
     }
 
     private void showTextOfLabelResult(String string) {
         labelResult.setText(string);
-        if (string.length() > 8 && string.length() < 16){
+        if (string.length() > 8 && string.length() < 16) {
             labelResult.setFont(FONT_MEDIUM);
         } else if (string.length() >= 16)
             labelResult.setFont(FONT_SMALL);
